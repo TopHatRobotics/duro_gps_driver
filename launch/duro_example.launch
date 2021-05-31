@@ -2,7 +2,7 @@
 <launch>
     <group ns="gps/duro">
         <node pkg="duro_ros" type="duronode" name="duro_driver" output="screen">
-            <param name="ip_address" value="192.168.1.10"/>
+            <param name="ip_address" value="192.168.0.222"/>
             <param name="port" value="55555"/>
             <param name="gps_receiver_frame_id" value="duro"/>
             <param name="imu_frame_id" value="duro"/>
