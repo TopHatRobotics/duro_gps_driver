@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launch>
+  <arg name="ip_address"                default="192.168.0.222"/>
+  <arg name="port"                      default="55555"/>
+  <arg name="gps_receiver_frame_id"     default="gps"/>
+  <arg name="imu_frame_id"              default="imu"/>
+  
+  <group ns="gps/duro">
+      <node pkg="duro_ros" type="duronode" name="piksi_driver" output="screen">
+          <param name="ip_address" value="192.168.0.223"/>
+          <param name="port" value="55555"/>
+          <param name="gps_receiver_frame_id" value="gps"/>
+          <param name="imu_frame_id" value="imu"/>
+          <param name="utm_frame_id" value="utm"/>
+      </node>
+  </group>
+  <!-- <node pkg="imu_filter_madgwick" type="imu_filter_node" name="ImuFilter">
+      <param name="use_mag" type="bool" value="false" />
+      <param name="publish_tf" type="bool" value="false" />
+      <param name="_world_frame" type="string" value="enu" />
+      <remap from="/imu/data_raw" to="/gps/duro/imu"/>
+  </node> -->
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_duro_link" 
+    args="0.7 0.23 0.42 0 0 0 base_link gps" />
+  
+</launch>
